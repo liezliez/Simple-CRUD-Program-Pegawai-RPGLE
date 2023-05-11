@@ -1,0 +1,94 @@
+     F*==PROGRAM KARYAWAN = SUB MENU CHANGE=================================
+
+     FLIEZDSPF3 CF   E             WORKSTN
+     FLIEZPF    UF A E           K DISK
+
+     ** --------------------- DECLARE DS UNTUK TANGGAL MSK
+
+     D FXTGLMSK        S               D
+     DDSTGLMSK         DS
+     D DSYY                    1      4  0
+     D DSMM                    5      6  0
+     D DSDD                    7      8  0
+
+     ** --------------------- DECLARE VARIABEL BUAT HITUNG MASA KERJA
+
+     DMASAKRJ          S             10P 0
+     DSKRG             S               Z
+     DSTRINGKU         S             50A
+     ** -------- TANGGAL MAKE SYSTEM DATE (%TIMESTAMP())
+     **
+     C                   EVAL      SKRG   =%TIMESTAMP()
+     C* -------------------------------------------------------------------
+     C*- WHILE : UNTUK KEMBALI (F3)
+     **
+     C     *IN03         DOWEQ     *OFF
+     C                   EXSR      #EMPTY
+     C                   EVAL      FLDPESAN = *BLANK
+     C                   EXFMT     MSKRJ
+
+     C*- USER INPUT NIP DI KOLOM PENCARIAN NIP
+
+     C                   Z-ADD     FLDNIPINP     FLDNIP
+
+     C*--- Chain untuk cari berdasarkan NIP
+
+     C                   IF        *IN03
+     C                   GOTO      EXIT
+     C                   ENDIF
+     C     FLDNIP        CHAIN     LIEZPFRC                           22
+
+     C*--- IF = jika NIP TIDAK ditemukan
+
+     C                   IF        *IN22
+     C                   EVAL      FLDPESAN = 'NIP TIDAK DITEMUKAN (ENTER)'
+     C                   EXSR      #EMPTY
+     C                   EXFMT     MSKRJ
+
+     C*--- ELSE = JIKA NIP DITEMUKAN
+
+     C                   ELSE
+     C                   Z-ADD     NIP           FLDNIP
+     C                   MOVEL     NM            FLDNM
+     C                   MOVEL     DMS           FLDDMS
+     C                   MOVE      TGLMSK        TGLMSKV
+     C                   MOVEL     DIVISI        FLDDVS
+     C                   EXSR      #HITUNG
+     **/free
+     **  stringku = 'Anda bekerja '+ %char(%diff(SKRG:TGLMSK:*d))+
+     **  ' Hari!';
+     **/end-free
+     C                   EVAL      FLDMSKRJ= %char(%diff(SKRG:TGLMSK:*d))
+     C                   EXFMT     MSKRJ2
+     C
+     C*-- END IF
+     C                   ENDIF
+     C*-ENDWHILE
+     C     EXIT          TAG
+     C                   ENDDO
+     C                   SETON                                        LR
+     C                   RETURN
+     **== END MAINLINE
+     **-SUBROUTINE EMPTY FIELD
+     C     #EMPTY        BEGSR
+     C                   Z-ADD     FLDNIPINP     FLDNIP
+     C                   MOVEL     *BLANK        FLDNM
+     C                   MOVEL     *BLANK        FLDDMS
+     C                   MOVEL     *BLANK        FLDDVS
+     C                   ENDSR
+     **-SUBROUTINE ISI DATA DARI FIELD
+     C     #ISI          BEGSR
+     C                   MOVEL     FLDNM         NM
+     C                   MOVEL     FLDDMS        DMS
+     C*                  MOVE      FLDDD         DSDD
+     C*                  MOVE      FLDMM         DSMM
+     C*                  MOVE      FLDYY         DSYY
+     C                   EVAL      FXTGLMSK=%DATE(%CHAR(DSTGLMSK):*iso0)
+     C                   MOVE      FXTGLMSK      TGLMSK
+     C                   MOVEL     FLDDVS        DIVISI
+     C                   ENDSR
+     **-SUBROUTINE HITUNG MASA KERJA
+     C     #HITUNG       BEGSR
+     C                   EVAL      MASAKRJ = (%DIFF(TGLMSK:SKRG:*DAYS))
+     C                   ENDSR
+     C

@@ -1,0 +1,68 @@
+     F*
+     F* PROGRAM PEGAWAI  BY LIEZ 18 APRIL 2023
+     F* - SUB MENU INPUT
+     F*=====================================================================
+
+     FLIEZDSPF  CF   E             WORKSTN
+     FLIEZPF    UF A E           K DISK
+
+     C* -------------------------------------------------------------------
+     C* --------------------- DECLARE DS UNTUK TANGGAL MSK
+     D FXTGLMSK        S               D
+     DDSTGLMSK         DS
+     D DSYY                    1      4  0
+     D DSMM                    5      6  0
+     D DSDD                    7      8  0
+     C* -------------------------------------------------------------------
+     C*
+     C*- WHILE : UNTUK KEMBALI (F3)
+     C     HOME          TAG
+     C     *IN03         DOWEQ     *OFF
+     **
+     C                   EXFMT     INPUT
+     C                   EVAL      NIP = FLDNIP
+     **
+     ** ---IF : JIKA TOMBOL F5 (SAVE) DITEKAN
+     **
+     C                   IF        *IN05 = *ON
+     C     NIP           CHAIN     LIEZPFRC                           2222
+     C                   MOVEL     FLDNM         NM               50
+     C                   MOVEL     FLDDMS        DMS              50
+     C                   MOVEL     FLDDVS        DIVISI           50
+     **
+     ** ----------------- MASUKIN DS UNTUK TANGAL MASUK KE DSTGL
+     **
+     C                   MOVE      FLDDD         DSDD
+     C                   MOVE      FLDMM         DSMM
+     C                   MOVE      FLDYY         DSYY
+     C                   EVAL      FXTGLMSK=%DATE(%CHAR(DSTGLMSK):*iso0)
+     C                   MOVE      FXTGLMSK      TGLMSK
+     ** --------------------------------------------------------
+     C
+     **
+     ** -----IF : CEK APAKAH NIP TELAH TERDAFTAR DI TABEL
+     **
+     C                   IF        *IN22
+     C                   WRITE     LIEZPFRC
+     C                   EVAL      FLDPESAN = 'DATA DITAMBAHKAN'
+     C                   GOTO      HOME
+     C
+     **
+     ** -----ELSE : JIKA NIP TELAH TERDAFTAR
+     **
+     C                   ELSE
+     C                   EVAL      FLDPESAN = 'NIP TELAH TERDAFTAR (ENTER)'
+     C                   EXFMT     INPUT
+     C                   GOTO      HOME
+     ** -----ENDIF :
+     C                   ENDIF
+     ** ---ENDIF :
+     C                   ENDIF
+     ** -ENDWHILE :
+     **
+     C                   ENDDO
+     C     END           TAG
+     C                   EVAL      *IN05 = *OFF
+     C                   EVAL      *IN03 = *OFF
+     C                   SETON                                        LR
+     C                   RETURN

@@ -1,0 +1,33 @@
+     FLIEZPF    IF   E           K DISK
+     FLIEZDSPF2 CF   E             WORKSTN
+     F                                     SFILE(SFLDATA:RRN)
+     D  RRN            S              4  0
+     D  RRNNM          S             50
+     D  NOMOR          S              1  0
+        /Free
+          Exsr  $ClearSr;
+          Exsr  $LoadSr;
+          Exfmt SFLCTL;
+          *InLr = *On;
+        /End-Free
+     **
+        /Free
+           BegSr  $ClearSr;
+             *In50 = *Off;
+             Write SFLCTL;
+             *In50 = *On;
+           EndSr;
+        /End-Free
+     **
+        /Free
+          BegSr $LoadSr;
+          Setll *loval LIEZPF;
+          Read  LIEZPF;
+          DoW Not %Eof(LIEZPF);
+            RRN  = RRN  + 1;
+            FLDNOMOR = RRN;
+            Write SFLDATA;
+            Read  LIEZPF;
+          EndDo;
+          EndSr;
+        /End-Free

@@ -1,0 +1,84 @@
+     A*%%TS  SD  20230508  102401  MARISZA     REL-V7R3M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      CF03(03)
+     A                                      CF05(05)
+     A                                      CF01(01)
+     A          R MSKRJ2
+     A*%%TS  SD  20230508  102401  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDNIP        10S 0O 11 30
+     A                                  8  3'MASUKAN NIP             : '
+     A            FLDNIPINP     10S 0I  8 30
+     A            FLDNM         50A  O 13 30
+     A            FLDDMS        50A  O 15 30
+     A            FLDDVS        50A  O 19 30
+     A                                  5 22'MENU HITUNG MASA KERJA PEGAWAI'
+     A                                      COLOR(YLW)
+     A            TGLMSK    R        O 17 30REFFLD(LIEZPFRC/TGLMSK PGMLEARN/LIE-
+     A                                      ZPF)
+     A                                      DATFMT(*ISO)
+     A                                 23  4'TEKAN F3 UNTUK KEMBALI'
+     A                                 21  7'Anda sudah bekerja di KB Bukopin s-
+     A                                      elama'
+     A            FLDMSKRJ       8A  B 21 49COLOR(RED)
+     A                                 21 60'Hari'
+     A          R MSKRJ
+     A*%%TS  SD  20230505  101843  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDNIP        10S 0O 11 30
+     A                                  8  3'MASUKAN NIP             : '
+     A            FLDNIPINP     10S 0I  8 30
+     A                                 23  3'-TEKAN F5 UNTUK HAPUS, TEKAN F3 UN-
+     A                                      TUK KEMBALI'
+     A            FLDNM         50A  O 13 30
+     A            FLDDMS        50A  O 15 30
+     A            FLDDVS        50A  O 19 30
+     A            TGLMSKV   R        O 17 30REFFLD(LIEZPFRC/TGLMSK PGMLEARN/LIE-
+     A                                      ZPF)
+     A                                      DATFMT(*ISO)
+     A                                  5 22'MENU HITUNG MASA KERJA PEGAWAI'
+     A                                      COLOR(YLW)
+     A            FLDPESAN      30A  O 21  7

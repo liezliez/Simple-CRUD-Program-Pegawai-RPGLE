@@ -1,0 +1,100 @@
+     F*==PROGRAM KARYAWAN = SUB MENU CHANGE=================================
+
+     FLIEZDSPF  CF   E             WORKSTN
+     FLIEZPF    UF A E           K DISK
+
+     ** --------------------- DECLARE DS UNTUK TANGGAL MSK
+
+     D FXTGLMSK        S               D
+     DDSTGLMSK         DS
+     D DSYY                    1      4  0
+     D DSMM                    5      6  0
+     D DSDD                    7      8  0
+
+     ** -------------------------------------------------------------------
+     **- WHILE : UNTUK KEMBALI (F3)
+
+     C     *IN03         DOWEQ     *OFF
+     C                   EXSR      #EMPTY
+     C                   EVAL      FLDPESAN = *BLANK
+     C                   EXFMT     CHANGE
+
+     C*- User input NIP d kolom pencarian NIP
+
+     C                   Z-ADD     FLDNIPINP     FLDNIP
+
+     **--- Chain untuk cari berdasarkan NIP
+     C                   IF        *IN03
+     C                   GOTO      EXIT
+     C                   ENDIF
+     C     FLDNIP        CHAIN     LIEZPFRC                           22
+
+     **--- IF = jika NIP TIDAK ditemukan
+     C
+     C                   IF        *IN22
+     C                   EVAL      FLDPESAN = 'NIP TIDAK DITEMUKAN (ENTER)'
+     C                   EXSR      #EMPTY
+     C                   EXFMT     CHANGE
+     C
+     C*--- ELSE = JIKA NIP DITEMUKAN
+
+     C                   ELSE
+     C                   Z-ADD     NIP           FLDNIP
+     C                   MOVEL     NM            FLDNM
+     C                   MOVEL     DMS           FLDDMS
+     C                   MOVE      TGLMSK        TGLMSKV
+     C                   MOVEL     DIVISI        FLDDVS
+     C                   EXFMT     CHANGE
+
+     C*-- IF = USER MENCET F5 (SAVE)
+
+     C                   IF        *IN05 = *ON
+     C                   EXFMT     POPUP
+     C                   IF        FLDINP = 'Y'
+     **--POPUP-----------------------------------------------
+     C                   EXSR      #ISI
+     C                   UPDATE    LIEZPFRC
+     C                   EXSR      #EMPTY
+     C                   EVAL      FLDPESAN = 'DATA DIUPDATE (ENTER)'
+     C                   EXFMT     CHANGE
+     C                   ELSE
+     C                   EVAL      FLDPESAN = 'DATA DIBUANG (ENTER)'
+     C                   EXFMT     CHANGE
+     C                   ENDIF
+     **------------------------------------------------------
+     C                   ENDIF
+     C*-- END IF
+     C                   ENDIF
+     C*-ENDWHILE
+     C     EXIT          TAG
+     C                   ENDDO
+     C                   SETON                                        LR
+     C                   RETURN
+     **== END MAINLINE
+     **-SUBROUTINE EMPTY FIELD
+     C     #EMPTY        BEGSR
+     C                   Z-ADD     FLDNIPINP     FLDNIP
+     C                   MOVEL     *BLANK        FLDNM
+     C                   MOVEL     *BLANK        FLDDMS
+     C*                  EVAL      TGLMSKV = '0000-00-00'
+     C                   EVAL      FLDDD = *ZERO
+     C                   EVAL      FLDMM = *ZERO
+     C                   EVAL      FLDYY = *ZERO
+     C                   MOVEL     *BLANK        FLDDVS
+     C                   ENDSR
+     **-SUBROUTINE ISI DATA DARI FIELD
+     C     #ISI          BEGSR
+     C                   MOVEL     FLDNM         NM
+     C                   MOVEL     FLDDMS        DMS
+     ** -----------------------------------------------------------------
+     C                   IF        %LEN(FLDDD) = 0
+     C                   MOVE      FLDDD         DSDD
+     C                   MOVE      FLDMM         DSMM
+     C                   MOVE      FLDYY         DSYY
+     C                   EVAL      FXTGLMSK=%DATE(%CHAR(DSTGLMSK):*iso0)
+     C                   MOVE      FXTGLMSK      TGLMSK
+     C                   ELSE
+     C                   MOVE      TGLMSK        TGLMSK
+     C                   MOVEL     FLDDVS        DIVISI
+     C                   ENDIF
+     C                   ENDSR

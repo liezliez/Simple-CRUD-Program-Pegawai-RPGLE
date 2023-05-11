@@ -1,0 +1,83 @@
+     A*%%TS  SD  20230509  084550  MARISZA     REL-V7R3M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      CF03(03)
+     A                                      CF05(05)
+     A                                      CF01(01)
+     A          R DELETE
+     A*%%TS  SD  20230509  084550  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDPESAN      30A  O 21  6
+     A            FLDNIP        10S 0O 11 30
+     A                                  8  3'MASUKAN NIP             : '
+     A            FLDNIPINP     10S 0I  8 30
+     A                                  5 24'MENU DELETE DATA DIRI PEGAWAI'
+     A                                      COLOR(YLW)
+     A                                 23  3'-TEKAN F5 UNTUK HAPUS, TEKAN F3 UN-
+     A                                      TUK KEMBALI'
+     A            FLDNM         50A  O 13 30
+     A            FLDDMS        50A  O 15 30
+     A            FLDDVS        50A  O 19 30
+     A            TGLMSKV   R        O 17 30REFFLD(LIEZPFRC/TGLMSK PGMLEARN/LIE-
+     A                                      ZPF)
+     A                                      DATFMT(*ISO)
+     A          R SFLDATA                   SFL
+     A*%%TS  SD  20230508  143312  MARISZA     REL-V7R3M0  5770-WDS
+     A            NIP       R        O  9 21REFFLD(LIEZPFRC/NIP PGMLEARN/LIEZPF)
+     A            NM        R        O 10 21REFFLD(LIEZPFRC/NM PGMLEARN/LIEZPF)
+     A            DMS       R        O 11 21REFFLD(LIEZPFRC/DMS PGMLEARN/LIEZPF)
+     A            DIVISI    R        O 13 21REFFLD(LIEZPFRC/DIVISI PGMLEARN/LIE-
+     A                                      ZPF)
+     A                                  9  4'NIP       : '
+     A                                 10  4'NAMA      :'
+     A                                 11  4'DOMISILI  : '
+     A                                 12  4'TGL MASUK : '
+     A                                 13  4'DIVISI    :'
+     A            TGLMSK    R        O 12 21REFFLD(LIEZPFRC/TGLMSK PGMLEARN/LIE-
+     A                                      ZPF)
+     A                                      DATFMT(*ISO)
+     A            FLDNOMOR       1S 0O  9  2
+     A          R SFLCTL                    SFLCTL(SFLDATA)
+     A*%%TS  SD  20230508  143413  MARISZA     REL-V7R3M0  5770-WDS
+     A                                      SFLSIZ(0100)
+     A                                      SFLPAG(0002)
+     A  50                                  SFLDSP
+     A  50                                  SFLDSPCTL
+     A N50                                  SFLCLR
+     A  50                                  SFLEND(*MORE)
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      ********'
+     A                                  3 33'CREDIT MEMBERS'
+     A                                      COLOR(RED)
+     A                                  5 28'MENU DISPLAY DATA PEGAWAI'
+     A                                      COLOR(YLW)
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      ********'
+     A          R POPUP
+     A*%%TS  SD  20230508  162047  MARISZA     REL-V7R3M0  5770-WDS
+     A                                      WINDOW(5 12 10 32)
+     A                                  4  8'ANDA YAKIN?(Y/N)'
+     A            FLDINP         1   I  7 16

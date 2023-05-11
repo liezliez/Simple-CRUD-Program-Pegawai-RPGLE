@@ -1,0 +1,266 @@
+     A*%%TS  SD  20230509  090715  MARISZA     REL-V7R3M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      CF03(03)
+     A                                      CF05(05)
+     A                                      CF01(01)
+     A          R UTAMA
+     A*%%TS  SD  20230509  090715  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7 78'*'
+     A                                  9 78'*'
+     A                                 11 78'*'
+     A                                 13 78'*'
+     A                                 15 78'*'
+     A                                 17 78'*'
+     A                                 19 78'*'
+     A                                 21 78'*'
+     A                                 23  3'**********************************-
+     A                                      ***********************************-
+     A                                      ******'
+     A                                 21  3'*'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'SILAHKAN PILIH MENU DIBAWAH INI:'
+     A                                  7  3'**********************************-
+     A                                      ******'
+     A                                 11  6'1. INPUT DATA DIRI PEGAWAI'
+     A                                 13  6'2. LIST DATA PEGAWAI'
+     A                                 15  6'3. CHANGE DATA PEGAWAI'
+     A                                 17  6'4. DELETE DATA PEGAWAI'
+     A                                  5 30'MENU UTAMA'
+     A                                 19  6'5. CEK MASA KERJA PEGAWAI'
+     A                                 21  6'MASUKAN PILIHAN: '
+     A            FLDPIL         1A  I 21 24
+     A            FLDDD          2S 0O  3 61
+     A                                  3 64'/'
+     A            FLDMM          2S 0O  3 66
+     A                                  3 69'/'
+     A            FLDYY          4S 0O  3 71
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A            FLDHOUR        2S 0O  4 61
+     A                                  4 64':'
+     A            FLDMNT         2S 0O  4 66
+     A            FLDPESAN      40A  O 21 31
+     A                                  5 50'LDA COMARA'
+     A            FLDDD2         2  0O  5 61
+     A                                  5 64'/'
+     A            FLDMM2         2  0O  5 66
+     A                                  5 69'/'
+     A            FLDYY2         4  0O  5 71
+     A          R INPUT
+     A*%%TS  SD  20230504  134448  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                  5 24'MENU INPUT DATA DIRI PEGAWAI'
+     A                                      COLOR(YLW)
+     A                                  8  3'DATA DIRI PEGAWAI'
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDPESAN      30A  O 21  6
+     A            FLDNIP        10S 0I 11 30
+     A                                 23  4'Tekan F5 Untuk save , tekan F3 unt-
+     A                                      uk kembali'
+     A            FLDNM         50A  I 13 30
+     A            FLDDMS        50A  I 15 30
+     A            FLDDVS        50A  I 19 30
+     A                                 17 31'TGL : '
+     A                                 17 45'BLN : '
+     A                                 17 59'THN : '
+     A            FLDYY          4  0I 17 68
+     A            FLDMM          2  0I 17 52
+     A            FLDDD          2  0I 17 38
+     A          R INPUTBCKUP
+     A*%%TS  SD  20230504  095102  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                  5 24'MENU INPUT DATA DIRI PEGAWAI'
+     A                                      COLOR(YLW)
+     A                                  8  3'DATA DIRI PEGAWAI'
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDPESAN      30A  O 21  6
+     A            FLDNIP        10S 0I 11 30
+     A            FLDNM         50A  I 13 30
+     A            FLDDMS        50A  I 15 30
+     A            FLDDVS        50A  I 19 30
+     A                                 17 31'TGL: '
+     A            FLDDD          2S 0I 17 38
+     A                                 17 44'BLN:'
+     A            FLDMM          2S 0I 17 50
+     A                                 17 55'THN:'
+     A            FLDYY          4S 0I 17 61
+     A                                 23  4'Tekan F5 Untuk save , tekan F3 unt-
+     A                                      uk kembali'
+     A          R CHANGE
+     A*%%TS  SD  20230508  144816  MARISZA     REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDPESAN      30A  O 21  6
+     A                                 23  4'Tekan F5 Untuk save , tekan F3 unt-
+     A                                      uk kembali'
+     A            FLDDVS        50A  B 19 30
+     A            FLDDMS        50A  B 15 30
+     A            FLDNM         50A  B 13 30
+     A            FLDNIP        10S 0O 11 30
+     A                                  5 24'MENU CHANGE DATA PEGAWAI'
+     A                                      COLOR(YLW)
+     A                                  8  3'MASUKAN NIP             : '
+     A            FLDNIPINP     10S 0I  8 30
+     A            TGLMSKV   R        O 17 30REFFLD(LIEZPFRC/TGLMSK PGMLEARN/LIE-
+     A                                      ZPF)
+     A                                      DATFMT(*ISO)
+     A                                 17 42'GANTI(DD-MM-YYYY):'
+     A            FLDDD          2S 0B 17 61
+     A            FLDMM          2S 0B 17 65
+     A            FLDYY          4S 0B 17 69
+     A          R DELETE
+     A*%%TS  SD  20230502  132430  AB12CL34    REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A            FLDDD          2S 0O  3 60
+     A                                  3 63'/'
+     A            FLDMM          2S 0O  3 65
+     A                                  3 68'/'
+     A            FLDYY          4S 0O  3 70
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDPESAN      30A  O 21  6
+     A            FLDNIP        10S 0O 11 30
+     A                                  8  3'MASUKAN NIP             : '
+     A            FLDNIPINP     10S 0I  8 30
+     A                                  5 24'MENU DELETE DATA DIRI PEGAWAI'
+     A                                      COLOR(YLW)
+     A            FLDNM         50A  O 13 30
+     A            FLDDMS        50A  O 15 30
+     A            FLDTGL         8S 0O 17 30
+     A                                 23  3'-TEKAN F5 UNTUK HAPUS, TEKAN F3 UN-
+     A                                      TUK KEMBALI'
+     A            FLDDVS        50   O 19 30
+     A          R CHANGE2
+     A*%%TS  SD  20230502  143108  AB12CL34    REL-V7R3M0  5770-WDS
+     A                                  1  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                  7  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A                                 19  3'*'
+     A                                 17  3'*'
+     A                                 15  3'*'
+     A                                 13  3'*'
+     A                                 11  3'*'
+     A                                  9  3'**********************************-
+     A                                      ***********************************-
+     A                                      *******'
+     A            FLDDD          2S 0O  3 60
+     A                                  3 63'/'
+     A            FLDMM          2S 0O  3 65
+     A                                  3 68'/'
+     A            FLDYY          4S 0O  3 70
+     A                                  3 29'CREDIT MEMBERS'
+     A                                      DSPATR(BL)
+     A                                      DSPATR(HI)
+     A                                 11  6'NIP                  :'
+     A                                 13  6'NAMA                 : '
+     A                                 15  6'DOMISILI             : '
+     A                                 17  6'TGL MASUK KERJA      : '
+     A                                 19  6'DIVISI               : '
+     A            FLDPESAN      30A  O 21  6
+     A                                 23  4'Tekan F5 Untuk save , tekan F3 unt-
+     A                                      uk kembali'
+     A            FLDDVS        50A  B 19 30
+     A            FLDTGL         8S 0B 17 30
+     A            FLDDMS        50A  B 15 30
+     A            FLDNM         50A  B 13 30
+     A            FLDNIP        10S 0O 11 30
+     A                                  5 24'MENU CHANGE DATA PEGAWAI'
+     A                                      COLOR(YLW)
+     A                                  8  3'MASUKAN NIP             : '
+     A            FLDNIPINP     10S 0I  8 30
+     A          R POPUP
+     A*%%TS  SD  20230508  162115  AB12CL34    REL-V7R3M0  5770-WDS
+     A                                      WINDOW(5 12 10 32)
+     A            FLDINP         1A  I  7 15
+     A                                  4  6'ANDA YAKIN?(Y/N)'

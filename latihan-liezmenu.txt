@@ -1,0 +1,106 @@
+     F*
+     F* PROGRAM TEST TRAINEE     18 APRIL 2023
+     F* - MENU UTAMA
+     F*=====================================================================
+
+     FLIEZDSPF  CF   E             WORKSTN
+     FLIEZPF    UF A E             DISK
+
+     ** DECLARE DS **
+
+     DCOMARA         EUDS                  EXTNAME(FEFCOMM)
+     D DSCOM           DS
+     D DSYY                    1      4  0
+     D DSMM                    5      6  0
+     D DSDD                    7      8  0
+     **-----------------------------------------------------
+     DCURTIMSTIP       DS
+     D CURRYEAR                1      4S 0
+     D CURRMONTH               5      6S 0
+     D CURRDAY                 7      8S 0
+     D CURRHOUR                9     10S 0
+     D CURRMNT                11     12S 0
+     Dtime_is          S               z
+     Dtime_isO         S             20
+     **-----------------------------------------------------
+     ** TANGGAL MAKE SYSDATE (TIMESTAMP) **
+     C                   EVAL      TIME_IS=%TIMESTAMP()
+     C                   EVAL      TIME_ISO=%char(TIME_IS:*iso0)
+     C                   EVAL      CURRYEAR=%dec(%SUBST(TIMe_ISo:1:4):4:0)
+     C                   EVAL      CURRMONTH=%dec(%SUBST(TIMe_ISo:5:2):2:0)
+     C                   EVAL      CURRDAY=%dec(%SUBST(TIMe_ISo:7:2):2:0)
+     C                   EVAL      CURRHOUR =%dec(%SUBST(TIMe_ISo:9:2):2:0)
+     C                   EVAL      CURRMNT =%dec(%SUBST(TIMe_ISo:11:2):2:0)
+     ** ASSIGN TANGGAL KE FIELD (SYSDATE(TIMESTAMP)) **
+     C                   MOVE      CURRDAY       FLDDD
+     C                   MOVE      CURRMONTH     FLDMM
+     C                   MOVE      CURRYEAR      FLDYY
+     C                   MOVE      CURRHOUR      FLDHOUR
+     C                   MOVE      CURRMNT       FLDMNT
+     C*--------------------------------------------------------------------
+     **
+     ** TANGGAL MAKE LOCAL DATA AREA COMARA **
+     C     *DTAARA       DEFINE    *LDA          COMARA
+     C                   IN        COMARA
+     C                   MOVE      SYDT          DSCOM
+     ** ASSIGN TANGGAL KE FIELD (COMARA) **
+     C                   MOVE      DSDD          FLDDD2
+     C                   MOVE      DSMM          FLDMM2
+     C                   MOVE      DSYY          FLDYY2
+     ** -------------------------------------------------------------------
+     ** ASSIGN TANGGAL KE FIELD (SYSDATE(TIMESTAMP)) **
+     C                   MOVE      CURRDAY       FLDDD
+     C                   MOVE      CURRMONTH     FLDMM
+     C                   MOVE      CURRYEAR      FLDYY
+     C                   MOVE      CURRHOUR      FLDHOUR
+     C                   MOVE      CURRMNT       FLDMNT
+     C*--------------------------------------------------------------------
+     C*
+     C*-WHILE : UNTUK KEMBALI (F3)
+     C
+     C     HOME          TAG
+     C     *IN03         DOWEQ     *OFF
+     C                   EXFMT     UTAMA
+     C                   EVAL      FLDPESAN = *BLANK
+     C*---IF : SWITCH MENU
+     C*                  IF        *IN03 = *ON
+     C*                  GOTO      EXIT
+     C*                  ENDIF
+     C
+     C                   IF        FLDPIL = '1'
+     C                   CALL      'INPLIEZ'
+     C                   GOTO      HOME
+     C**
+     C                   ELSEIF    FLDPIL = '2'
+     C                   CALL      'DSPLIEZ'
+     C                   GOTO      HOME
+     **
+     C                   ELSEIF    FLDPIL = '3'
+     C                   CALL      'CHGLIEZ'
+     C                   GOTO      HOME
+     **
+     C                   ELSEIF    FLDPIL = '4'
+     C                   CALL      'DLTLIEZ'
+     C                   GOTO      HOME
+     **
+     C                   ELSEIF    FLDPIL = '5'
+     C                   CALL      'MSKRJLIEZ'
+     C                   GOTO      HOME
+     C
+     C                   ELSE
+     C*                  EVAL      FLDPESAN = 'Silahkan pilih yg tersedia'
+       /free
+         fldpesan = 'SILAHKAN PILIH MENU YANG TERSEDIA';
+       /end-free
+     C                   GOTO      HOME
+     **
+     **
+     C*---ENDIF : SWITCH MENU
+     **
+     C                   ENDIF
+     **
+     C*-ENDWHILE : UNTUK KEMBALI (F3)
+     **
+     C                   ENDDO
+     C                   SETON                                        LR
+     C                   RETURN
